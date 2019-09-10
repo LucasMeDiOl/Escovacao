@@ -1,0 +1,143 @@
+---
+title: "Escovação - Estatística Descritiva "
+author: "Lucas Meller Dias de Oliveira"
+date: "10 de setembro de 2019"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library("ggplot2")
+library("tidyverse")
+library("readxl")
+library("dplyr")
+DadosEscovacao <- read_excel("DadosEscovacao.xlsx")
+```
+
+
+## Introdução
+
+Este arquivo representa um trabalho de um discente da Universidade Federal de Santa Catarina (UFSC), rerferente à disciplina "Estatística", código EPS7000, turma 04213, Departamento de Engenharia de Produção (DEPS).
+
+O trabalho é realizado a partir de dados de escovação fornecidos pelo docente orientador da disciplina, Prof. Eduardo Ferreira da Silva, e tem os seguintes objetivos:
+
+
+### Objetivo Geral
+
+Esse trabalho pretende avaliar os discentes em relação à capacidade de apresentar uma análise discritiva dos dados, bem como uma interpretação geral destes, a fim de posteriormente apresentar inferências.
+
+### Objetivos Específicos
+
+-Utilizar o programa RStudio (ou similar) visando a organização e manipulação da base de dados;
+-Analisar a base de dados a partir da análise descritiva;
+-Listar e responder possíveis hipóteses com os dados obtidos a partir da análise;
+-Interpretar as análises realizadas.
+
+
+***
+
+### Hipóteses
+
+Definir caso a escova Hugger representa uma melhor ferramenta na diminuição da placa bacteriana, comparada à escovação com escovas convencionais.
+
+Definir caso o 
+
+## Planejamento de Coleta de Dados
+
+Os dados foram colhidos por Singer e Andrade (1997) 
+/(Fonte: BUSSAB, Wilton de O.; MORETTIN, Pedro A.. Estatística Básica. 5. ed. São Paulo: Saraiva, 2002)
+
+
+## Análise Exploratória de Dados
+
+Os dados a seguir representam a quantidade de placa em crianças da pré-escola, utilizando uma escova convencional, e utilizando uma escova experimental.
+
+### Limpeza de Dados:
+
+Remoção de linhas e colunas supérfluas
+
+```{r DadosEscovacao}
+
+
+names(DadosEscovacao)[names(DadosEscovacao) == "...2"] <- "Observação"
+names(DadosEscovacao)[names(DadosEscovacao) == "...3"] <- "Sexo"
+names(DadosEscovacao)[names(DadosEscovacao) == "...4"] <- "Escova_Convencional_Antes"
+names(DadosEscovacao)[names(DadosEscovacao) == "...5"] <- "Escova_Convencional_Depois"
+names(DadosEscovacao)[names(DadosEscovacao) == "...6"] <- "Escova_Hugger_Antes"
+names(DadosEscovacao)[names(DadosEscovacao) == "...7"] <- "Escova_Hugger_Depois"
+
+DadosEscovacao$Sexo <- as.factor(DadosEscovacao$Sexo)
+DadosEscovacao$Escova_Convencional_Antes <- as.factor(DadosEscovacao$Escova_Convencional_Antes)
+DadosEscovacao$Escova_Convencional_Depois <- as.factor(DadosEscovacao$Escova_Convencional_Depois)
+DadosEscovacao$Escova_Hugger_Antes <- as.factor(DadosEscovacao$Escova_Hugger_Antes)
+DadosEscovacao$Escova_Hugger_Depois <- as.factor(DadosEscovacao$Escova_Hugger_Depois)
+
+DadosEscovacao <- DadosEscovacao[-c(1, 2, 3, 4, 31, 32), ]
+```
+
+
+### Apresentação dos Dados
+
+```{r}
+DadosEscovacao
+
+#DadosEscovacao$dif <- DadosEscovacao$Escova_Convencional_Antes + DadosEscovacao$Escova_Hugger_Antes -
+#                      DadosEscovacao$Escova_Convencional_Depois + DadosEscovacao$Escova_Hugger_Depois
+```
+
+
+### Apresentação do sumário:
+
+```{r}
+summary(DadosEscovacao$Observacao)
+summary(DadosEscovacao$Sexo)
+summary(DadosEscovacao$Escova_Convencional_Antes)
+summary(DadosEscovacao$Escova_Convencional_Depois)
+summary(DadosEscovacao$Escova_Hugger_Antes)
+summary(DadosEscovacao$Escova_Hugger_Depois)
+```
+
+
+### Gráficos
+
+#### Quantidade de placa após escovação com escova convencional
+
+```{r }
+plot(DadosEscovacao$Escova_Convencional_Antes,DadosEscovacao$Escova_Convencional_Depois)
+```
+
+#### Quantidade de placa após escovação com escova experimental (Hugger)
+
+```{r }
+plot(DadosEscovacao$Escova_Hugger_Antes,DadosEscovacao$Escova_Hugger_Depois)
+```
+
+Nota: O parâmetro `echo = FALSE` foi adicionado ao  código do *chunk* para não incluir o código R que gerou o gráfico na página HTML.
+
+### Considerações adicionais
+
+
+
+
+## Problema
+
+
+
+## Apresentação sucinta da solução 
+
+
+
+## Análise
+
+
+
+## Conclusão
+
+
